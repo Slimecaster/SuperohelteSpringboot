@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Tilføj superhelt</title>
+  <!-- Side-titel, der vises i browserens fane -->
 </head>
 <body>
-$END$
+
+<h1>Tilføj en ny superhelt :)</h1>
+<!-- Overskrift for siden -->
+
+<!-- Formular til tilføjelse af et nyt programmeringssprog. Thymeleaf bruges til at håndtere dataoverførslen mellem server og klient. -->
+<form action="#" th:action="@{/marvelcharacter/save}" th:object="${marvelCharacter}" method="post">
+  <!-- Inputfelt for navnet på det nye programmeringssprog -->
+  <label for="name">name:</label>
+  <input type="text" id="name" th:field="*{marvelcharacter.name}" />
+
+  <!-- Inputfelt for udgivelsesåret for det nye programmeringssprog -->
+  <label for="alias">alias:</label>
+  <input type="text" id="alias" th:field="*{marvelcharacter.alias}" />
+
+  <!-- Inputfelt for skaberen af det nye programmeringssprog -->
+  <label for="powers">powers:</label>
+  <input type="text" id="powers" th:field="*{marvelcharacter.powers}" />
+
+  <!-- Inputfelt for paradigmet for det nye programmeringssprog -->
+  <label for="allignment">allignment:</label>
+  <input type="text" id="allignment" th:field="*{marvelcharacters.allignment}" />
+
+  <!-- Submit-knap for at sende formular data til serveren for behandling og tilføjelse af det nye sprog til databasen -->
+  <button type="submit">Gem</button>
+</form>
+
+<!-- Link til at vende tilbage til listen over programmeringssprog -->
+<a href="/">Tilbage til listen</a>
+
 </body>
 </html>

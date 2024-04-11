@@ -1,10 +1,48 @@
+<!-- Denne HTML-fil anvender Thymeleaf-template engine for at gøre det muligt at integrere
+dynamiske data (som en liste over programmeringssprog) ind i HTML -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Liste over marvel karaktere</title>
+    <!-- Grundlæggende opsætning med meta-tag og titel -->
 </head>
 <body>
-$END$
+
+<h1>Marvel karaktere</h1>
+
+<!-- Link til at tilføje et nyt sprog -->
+<a href="/marvelcharacter/add">Tilføj en ny superhelt :)</a>
+
+<!-- Starten af tabellen for at vise programmeringssprog -->
+<table>
+    <thead>
+    <tr>
+        <!-- Kolonneoverskrifter for tabellen -->
+        <th>navn</th>
+        <th>alias</th>
+        <th>powers</th>
+        <th>allignment</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterer gennem sprogliste og vis hver sprog -->
+    <tr th:each="marvelCharacter : ${superhelte}">
+        <!-- Viser værdier for hvert sprog fra listen -->
+        <td th:text="${marvelCharacter.name}">name</td>
+        <td th:text="${marvelCharacter.alias}">alias</td>
+        <td th:text="${marvelCharacter.powers}">powers</td>
+        <td th:text="${marvelCharacter.allignment}">allignment</td>
+        <td>
+            <!-- Link til at redigere et sprog -->
+            <a th:href="@{/Marvelcharacter/edit/{alias}(alias=${marvelCharacter.alias})}">Rediger</a>
+            <!-- Link til at slette et sprog -->
+            <a th:href="@{/Marvelcharacter/delete/{alias}(alias=${marvelCharacter.alias})}" onclick="return confirm('Er du sikker på, at du vil slette denne superhelt :(?');">Slet</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
 </body>
 </html>
